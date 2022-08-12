@@ -1,0 +1,5 @@
+/target
+.env
+/spreadsheet/*.json
+/csv/*.csv
+/swagger-ui/openapi.json

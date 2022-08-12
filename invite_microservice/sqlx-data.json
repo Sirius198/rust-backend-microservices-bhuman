@@ -1,0 +1,39 @@
+{
+  "db": "PostgreSQL",
+  "246722b52128b520da30262356606a4e10340c0ad29ecf6ab8705ecb9e1f34f0": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "UPDATE invites SET used = 1 WHERE (email = $1 OR phone = $2) AND used = 0 RETURNING user_id"
+  },
+  "ee60f9112eb745a5c85d23e0f5de0f2d69bf84952b6515efc31478bc6c079456": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO invites (user_id, email, phone, hash) VALUES ($1, $2, $3, $4)"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "db": "PostgreSQL",
+  "24eeccba706f386f2553a100b0e39670c0f2489edafca43e30f85448fbfba666": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "phone",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "email",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "google_contacts",
+          "ordinal": 3,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT user_id, phone, email, google_contacts FROM contacts WHERE user_id = $1"
+  },
+  "bb0f5c257e67ec5ba3b63f1fe17ebaf25a98683a65452780fe81ef35203fb2ff": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO contacts (user_id, phone, email, google_contacts) VALUES ($1, $2, $3, $4) ON CONFLICT (user_id) DO UPDATE SET phone = $5, email = $6, google_contacts = $7"
+  },
+  "df91f474458ddc682fe48189e49e8f5f9343d52b9881b2f316c5dcb1e421ad02": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "phone",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "email",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "outlook_contacts",
+          "ordinal": 3,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT user_id, phone, email, outlook_contacts FROM contacts WHERE user_id = $1"
+  },
+  "e2723ce7fb5067fa39a6ea8a98b2e1d4d3ca7a388b4869f954f8ae9e18dd346a": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO contacts (user_id, phone, email, outlook_contacts) VALUES ($1, $2, $3, $4) ON CONFLICT (user_id) DO UPDATE SET phone = $5, email = $6, outlook_contacts = $7"
+  }
+}

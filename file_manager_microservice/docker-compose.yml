@@ -1,0 +1,8 @@
+services:
+  transcript-service:
+    image: transcript-service:latest
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:dCiMwElrETvOkZQ8oCxC@containers-us-west-81.railway.app:5652/railway

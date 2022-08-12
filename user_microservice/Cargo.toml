@@ -1,0 +1,47 @@
+[package]
+name = "user_microservice"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "user_microservice"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[[bin]]
+name = "user_microservice"
+path = "src/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sqlx = { version = "0.5", features = ["chrono", "macros", "postgres", "uuid", "time", "bigdecimal", "offline"] }
+axum-server = "0.4.0"
+axum = {version="0.5",features=["ws","headers"]}
+axum-macros = "0.1.0"
+tokio = { version = "1.16.1", features = ["full"] }
+anyhow = "1.0.53"
+headers = "0.3.7"
+schemars = { version = "0.8" }
+okapi = { version = "0.7.0-rc.1"}
+openapi-rs = {git = "https://github.com/bhuman-ai/openapi-rs"}
+tower-service = "0.3"
+http = "0.2"
+microservice_utils = {path = "../microservice_utils/"}
+tower = {version = "0.4.11",features=["full"]}
+tower-http = { version = "0.2.2", features = ["fs", "trace", "set-header","cors"] }
+serde = '1'
+serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
+uuid = { version = "0.8", features = ["serde", "v4"] }
+jsonwebtoken = "7.2.0"
+dotenv = "0.15.0"
+lazy_static = "1.4"
+
+shuttle-service = { version = "0.3.3", features = ["web-axum", "sqlx-postgres"] }
+sync_wrapper = "0.1"
+tonic = { version = "0.5", features = ["tls", "tls-roots", "prost"] }
+pin-project = "1"
+prost = "0.8"
+
+[build-dependencies]
+tonic-build = { version = "0.5", features = ["prost"] }

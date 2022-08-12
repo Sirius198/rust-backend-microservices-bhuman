@@ -1,0 +1,539 @@
+{
+  "db": "PostgreSQL",
+  "1858d7c9443710c56d2fb824025bfbc3f591d4d3a2201bd003e802593ff480a7": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Timestamptz",
+          "Timestamptz",
+          "Bool",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Float4",
+          "Float4",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Timestamptz",
+          "Timestamptz",
+          "Bool",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Float4",
+          "Float4",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO users (\n            user_id, first_name, last_name, username, email, dob, last_at, two_fator, picture, gender, bio, \n            user_account_type, phone_number, invite_users, referred_by, app_ids, post_ids, workspace_ids,\n            organization, latitude, longitude, last_login_ip) \n        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)\n        ON CONFLICT (user_id) DO UPDATE SET first_name = $23, last_name = $24, username = $25, email = $26, dob = $27, \n        last_at = $28, two_fator = $29, picture = $30, gender = $31, bio = $32, user_account_type = $33, phone_number = $34, \n        invite_users = $35, referred_by = $36, app_ids = $37, post_ids = $38, workspace_ids = $39, organization = $40, \n        latitude = $41, longitude = $42, last_login_ip = $43"
+  },
+  "24eeccba706f386f2553a100b0e39670c0f2489edafca43e30f85448fbfba666": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "phone",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "email",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "google_contacts",
+          "ordinal": 3,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT user_id, phone, email, google_contacts FROM contacts WHERE user_id = $1"
+  },
+  "3ee325a1ecf1e7d1499994d4c947dc7ed2f96114590c10d647dd3f96c209b7e3": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "UPDATE invites SET used = 1 WHERE email = $1 OR phone = $2 RETURNING user_id"
+  },
+  "4b80069465cf745e80fad18a86d5c0c025e8430030dc6174a4d64a2612b6f0a3": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "description",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Timestamptz",
+          "Int4"
+        ]
+      }
+    },
+    "query": "UPDATE workspaces SET user_id = $1, name = $2, description = $3, updated_at = $4 WHERE id = $5 RETURNING *"
+  },
+  "798b23b0c3daca3cf8330fd17e2e9362b15081eacd1bea8a4b931cf7d71b3782": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "DELETE FROM users WHERE user_id = $1"
+  },
+  "b6752e098e0a576290acb4fd397db4b2285e0d1c5346e13175fba8f7be3c4cd6": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "DELETE FROM workspaces WHERE user_id = $1"
+  },
+  "bb0f5c257e67ec5ba3b63f1fe17ebaf25a98683a65452780fe81ef35203fb2ff": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO contacts (user_id, phone, email, google_contacts) VALUES ($1, $2, $3, $4) ON CONFLICT (user_id) DO UPDATE SET phone = $5, email = $6, google_contacts = $7"
+  },
+  "c5dd6e9a5f656533038ba1fa8ef92012439686db0f8727cf726c489182ed63e8": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "first_name",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "last_name",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "username",
+          "ordinal": 4,
+          "type_info": "Text"
+        },
+        {
+          "name": "email",
+          "ordinal": 5,
+          "type_info": "Text"
+        },
+        {
+          "name": "dob",
+          "ordinal": 6,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "last_at",
+          "ordinal": 7,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "two_fator",
+          "ordinal": 8,
+          "type_info": "Bool"
+        },
+        {
+          "name": "picture",
+          "ordinal": 9,
+          "type_info": "Text"
+        },
+        {
+          "name": "gender",
+          "ordinal": 10,
+          "type_info": "Text"
+        },
+        {
+          "name": "bio",
+          "ordinal": 11,
+          "type_info": "Text"
+        },
+        {
+          "name": "user_account_type",
+          "ordinal": 12,
+          "type_info": "Text"
+        },
+        {
+          "name": "phone_number",
+          "ordinal": 13,
+          "type_info": "Text"
+        },
+        {
+          "name": "invite_users",
+          "ordinal": 14,
+          "type_info": "Text"
+        },
+        {
+          "name": "referred_by",
+          "ordinal": 15,
+          "type_info": "Text"
+        },
+        {
+          "name": "app_ids",
+          "ordinal": 16,
+          "type_info": "Text"
+        },
+        {
+          "name": "post_ids",
+          "ordinal": 17,
+          "type_info": "Text"
+        },
+        {
+          "name": "workspace_ids",
+          "ordinal": 18,
+          "type_info": "Text"
+        },
+        {
+          "name": "organization",
+          "ordinal": 19,
+          "type_info": "Text"
+        },
+        {
+          "name": "latitude",
+          "ordinal": 20,
+          "type_info": "Float4"
+        },
+        {
+          "name": "longitude",
+          "ordinal": 21,
+          "type_info": "Float4"
+        },
+        {
+          "name": "last_login_ip",
+          "ordinal": 22,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT * FROM users WHERE user_id = $1"
+  },
+  "df91f474458ddc682fe48189e49e8f5f9343d52b9881b2f316c5dcb1e421ad02": {
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "phone",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "email",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "outlook_contacts",
+          "ordinal": 3,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT user_id, phone, email, outlook_contacts FROM contacts WHERE user_id = $1"
+  },
+  "e05b12da9b0b11101f042bfa57cf1c7fa0bfddd7dc9800d0fef04fdb8f228417": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "description",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Timestamptz",
+          "Timestamptz"
+        ]
+      }
+    },
+    "query": "INSERT INTO workspaces (\n            user_id, name, description, created_at, updated_at) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+  },
+  "e2723ce7fb5067fa39a6ea8a98b2e1d4d3ca7a388b4869f954f8ae9e18dd346a": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO contacts (user_id, phone, email, outlook_contacts) VALUES ($1, $2, $3, $4) ON CONFLICT (user_id) DO UPDATE SET phone = $5, email = $6, outlook_contacts = $7"
+  },
+  "e5820c306dde473be60ac5a2951e6738824a8b21a92aa0ae3a666b70fa4a634e": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "description",
+          "ordinal": 3,
+          "type_info": "Text"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT * FROM workspaces WHERE user_id = $1"
+  },
+  "ee60f9112eb745a5c85d23e0f5de0f2d69bf84952b6515efc31478bc6c079456": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Text",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO invites (user_id, email, phone, hash) VALUES ($1, $2, $3, $4)"
+  }
+}

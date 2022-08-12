@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package workspace_service;
+
+service WorkspaceService {
+    // check whether workspace exist or not
+    rpc check_workspace(WorkspaceInfo) returns (WorkspaceStatus) {}
+}
+
+message WorkspaceInfo {
+    string user_id = 1;
+    string workspace_id = 2;
+}
+
+message WorkspaceStatus {
+    string status = 1;
+}
